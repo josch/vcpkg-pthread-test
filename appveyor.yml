@@ -4,7 +4,7 @@ image: Visual Studio 2017
 platform: x64
 environment:
   matrix:
-   - COMMIT: 3d87ec6
+   - COMMIT: 55ed8a0
      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
    - COMMIT: HEAD
      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
@@ -15,10 +15,9 @@ build_script:
     git reset --hard %COMMIT%
     git status
     git show HEAD --no-patch
-    echo.set(VCPKG_BUILD_TYPE release)>> %APPVEYOR_BUILD_FOLDER%\vcpkg\triplets\x64-windows.cmake
     call bootstrap-vcpkg.bat
     %APPVEYOR_BUILD_FOLDER%\vcpkg\vcpkg.exe version
     %APPVEYOR_BUILD_FOLDER%\vcpkg\vcpkg.exe --triplet x64-windows install pthreads
     cd %APPVEYOR_BUILD_FOLDER%
-    cmake -H %APPVEYOR_BUILD_FOLDER% -Bbuild -DCMAKE_TOOLCHAIN_FILE=%APPVEYOR_BUILD_FOLDER%\vcpkg\scripts\buildsystems\vcpkg.cmake -G"Visual Studio 15 2017 Win64"
+    cmake -H%APPVEYOR_BUILD_FOLDER% -Bbuild -DCMAKE_TOOLCHAIN_FILE=%APPVEYOR_BUILD_FOLDER%\vcpkg\scripts\buildsystems\vcpkg.cmake -G"Visual Studio 15 2017 Win64"
     cmake --build build --config Release -- /m
