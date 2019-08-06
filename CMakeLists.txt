@@ -6,5 +6,6 @@ project(pthreads_test)
 find_package(pthreads CONFIG REQUIRED)
 
 add_executable(${PROJECT_NAME} pthread_test.cc)
+target_include_directories(${PROJECT_NAME} ${PThreads4W_INCLUDE_DIR})
 target_link_libraries(${PROJECT_NAME} pthreads)
 #target_link_libraries(${PROJECT_NAME} Threads::Threads)
