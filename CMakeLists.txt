@@ -8,5 +8,5 @@ find_package(pthreads REQUIRED)
 
 add_executable(${PROJECT_NAME} pthread_test.cc)
 target_include_directories(${PROJECT_NAME} PUBLIC ${PTHREADS_INCLUDE_DIR})
-target_link_libraries(${PROJECT_NAME} pthreads)
+target_link_libraries(${PROJECT_NAME} ${PTHREADS_LIBRARY})
 #target_link_libraries(${PROJECT_NAME} Threads::Threads)
